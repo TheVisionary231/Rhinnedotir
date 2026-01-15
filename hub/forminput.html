@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <title>form to tabel</title>
+        <style>
+            body{
+                font-family:Arial, Helvetica, sans-serif;
+                padding: 20px;
+                background-color: #e1af8e;
+
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid #333;
+                padding: 10px;
+                text-align: center;
+            }
+            input[type="text"], input[type="number"] {
+                padding: 10px;
+                margin: 5px ;
+            
+            }
+            img{
+                max-width:300px;
+                height:auto;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+        </style>
+    </head>   
+    <body>
+        <h2>Form Input Data</h2>
+        <form id="dataForm">
+            Nama: <input type="text" id="name" placeholder="Nama" required>
+            Umur: <input type="number" id="age" placeholder="Usia" required>
+            foto: <input type="file" id="photo" accept="image/*" required>
+            <button type="submit">Tambah Data</button>
+        </form>
+        <h3>data Table</h3>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Usia</th>
+                    <th>Foto</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <script>
+            document.getElementById('dataForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const name = document.getElementById('name').value;
+                const age = document.getElementById('age').value;
+                const photoInput = document.getElementById('photo');
+
+                const tableBody = document.querySelector('#dataTable tbody');
+                const newRow = tableBody.insertRow();
+                newRow.innerHTML = `<td>${name}</td><td>${age}</td> <td><img src="${URL.createObjectURL(photoInput.files[0])}" alt="Foto"></td>`;
+
+                this.reset(); // Reset form fields
+            });
+
+
+        </script>
+    </body>

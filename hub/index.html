@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="images/jpeg" href="img/img/sinless.webp">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+        .login-card {
+            transition: transform 0.3s ease-in-out;
+        }
+        .login-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .input-field {
+            transition: border-color 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 5px rgba(118, 75, 162, 0.5);
+        }
+        .btn-glow {
+            box-shadow: 0 0 10px rgba(118, 75, 162, 0.5);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(118, 75, 162, 0.8);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .error-message {
+            display: none;
+            background-color: #f56565;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .success-message {
+            display: none;
+            background-color: #48bb78;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8 fade-in login-card">
+        <div class="text-center mb-6">
+            <i class="fas fa-lock text-4xl text-blue-600"></i>
+            <h2 class="text-2xl font-bold text-gray-800 mt-2">Welcome Back</h2>
+            <p class="text-gray-600">Please sign in to your account</p>
+        </div>
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label for="username" class="block text-gray-700 font-medium">Username or Email</label>
+                <input type="text" id="username" name="username" class="input-field bg-gray-100 border border-gray-300 rounded px-4 py-2 w-full focus:outline-none" required>
+            </div>
+            <div>
+                <label for="password" class="block text-gray-700 font-medium">Password</label>
+                <input type="password" id="password" name="password" class="input-field bg-gray-100 border border-gray-300 rounded px-4 py-2 w-full focus:outline-none" required>
+            </div>
+            <div class="flex items-center justify-between">
+                <label class="flex items-center">
+                    <input type="checkbox" class="mr-2">
+                    <span class="text-gray-600 text-sm">Remember me</span>
+                </label>
+                <a href="#" class="text-blue-600 text-sm hover:underline">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn-glow bg-blue-600 text-white rounded px-4 py-2 w-full font-bold hover:bg-blue-700 transition duration-300">Sign In</button>
+        </form>
+        <div id="errorMessage" class="error-message fade-in">
+            Invalid username or password. Please try again.
+        </div>
+        <div id="successMessage" class="success-message fade-in">
+            Login successful! Redirecting...
+        </div>
+        <div class="text-center mt-6">
+            <p class="text-gray-600">Don't have an account? <a href="#" class="text-blue-600 hover:underline">Sign up</a></p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const errorMsg = document.getElementById('errorMessage');
+        const successMsg = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Simple validation (in a real app, this would be server-side)
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'admin' && password === 'password') {  // Dummy credentials
+                errorMsg.style.display = 'none';
+                successMsg.style.display = 'block';
+               setTimeout(() => {
+    window.location.href = 'hub.html';  // Redirect to your index page
+}, 2000);
+            } else {
+                successMsg.style.display = 'none';
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
+</content>
+</create_file>
